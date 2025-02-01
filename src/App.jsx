@@ -23,7 +23,7 @@ function App() {
           </form>
         </div>
         {/* To Do List Start */}
-        <div className='bg-[rgba(224, 242, 254,0.70)] p-8 rounded-lg w-11/12 my-4'>
+        <div className='bg-[#E7F7FD] p-8 rounded-lg max-w-7xl my-8 mx-auto'>
           <h2 className='text-center text-2xl capitalize'>To-Do List</h2>
           <div className='h-[350px] overflow-auto relative bg-scroll'>
             <div className='flex flex-col gap-1'>
@@ -43,8 +43,17 @@ function App() {
                 </div>
               </div>
             </div>
-            {/* To - do list end */}
           </div>
+          {/* To - do list end */}
+          {/* To - do footer start */}
+          <div className='flex justify-between items-center p-4 sticky bottom-0 left-0 w-full font-semibold text-black'>
+              <div className='text-teal-900'>Count = 10</div>
+              <div className='text-sm'>
+                <span className='uppercase m-1 cursor-pointer'>All</span>
+                <span className='uppercase m-1 cursor-pointer'>Complete</span>
+                <span className='uppercase m-1 cursor-pointer'> Incomplete</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
