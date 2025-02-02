@@ -1,8 +1,10 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Form = () => {
+    const [todos, setTodos] = useState([])
     const handleForm = async (e) => {
         e.preventDefault();
         const form = e.target;
@@ -24,6 +26,19 @@ const Form = () => {
             toast.error("Failed to add Todo!", error);
         }
     };
+
+    const getTodos = async () => {
+        try {
+            const res = await axios.get('http://localhost:5000/todos')
+            setTodos(res.data)
+        } catch (error) {
+            toast.error(error)
+        }
+    }
+
+    useEffect(() => {
+        getTodos()
+    }, [])
 
     return (
         <div className='w-full h-screen bg-no-repeat bg-center bg-cover'>
@@ -47,19 +62,26 @@ const Form = () => {
                 <div className='bg-[#E7F7FD] p-8 rounded-lg max-w-7xl my-8 mx-auto'>
                     <h2 className='text-center text-2xl capitalize'>To-Do List</h2>
                     <div className='h-[350px] overflow-auto'>
-                        <div className='shadow p-4 m-2 flex gap-3 cursor-pointer hover:shadow-xl relative group/item'>
-                            <input type="checkbox" className='w-4 h-4 accent-teal-500 rounded-lg cursor-pointer' />
-                            <div className='px-4'>01 - Todo</div>
-                            <div className='px-4 mx-4'>text</div>
-                            <div className='flex gap-7 absolute right-10 invisible group-hover/item:visible'>
-                                <i className='fa-solid fa-trash'></i>
-                            </div>
-                        </div>
+                        {
+                            todos?.map((eachTodo, idx) => {
+                                const { _id, todo } = eachTodo || {};
+                                return (
+                                    <div key={_id} className='shadow p-4 m-2 flex gap-3 cursor-pointer hover:shadow-xl relative group/item'>
+                                        <input type="checkbox" className='w-4 h-4 accent-teal-500 rounded-lg cursor-pointer mt-1' />
+                                        <div className='px-4'>{idx + 1} <span className="ml-10">Todo</span></div>
+                                        <div className='px-4 mx-4'>{todo}</div>
+                                        <div className='flex gap-7 absolute right-10 invisible group-hover/item:visible'>
+                                            <i className='fa-solid fa-trash'></i>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
                     </div>
 
                     {/* To - do footer */}
                     <div className='flex justify-between items-center p-4 sticky bottom-0 left-0 w-full font-semibold text-black'>
-                        <div className='text-teal-900'>Count = 10</div>
+                        <div className='text-teal-900'>Count {todos.length}</div>
                         <div className='text-sm'>
                             <span className='uppercase m-1 cursor-pointer'>All</span>
                             <span className='uppercase m-1 cursor-pointer'>Complete</span>
