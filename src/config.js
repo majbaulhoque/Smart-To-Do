@@ -1,1 +1,1 @@
-export const BASE_URL = "https://smart-to-do-server-ov5l3s4xy-majbas-projects.vercel.app"
+export const BASE_URL = "https://smart-to-do-server.vercel.app"

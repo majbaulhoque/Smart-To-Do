@@ -2,8 +2,7 @@
 
 A full-stack Todo application built with modern web technologies to help you manage your daily tasks efficiently. Features real-time CRUD operations with persistent storage in MongoDB.
 
-![Todo App Demo](https://via.placeholder.com/800x400.png?text=Todo+App+Demo) 
-*Add your demo screenshot/gif here*
+![Todo App Demo](https://melodic-banoffee-1a4af6.netlify.app/) 
 
 ## ✨ Features
 

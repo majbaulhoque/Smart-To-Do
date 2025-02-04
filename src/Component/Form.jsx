@@ -84,11 +84,11 @@ const Form = () => {
         }
     }
 
-
+    
     // Handle Delete All
     const handleDeleteAll = async () => {
         try {
-            const res = await axios.delete(`${BASE_URL}/todos`);
+            const res = await axios.delete('http://localhost:5000/todos');
             if (res.data.deletedCount > 0) {
                 toast.success("All todos cleared successfully!");
                 setTodos([]);
