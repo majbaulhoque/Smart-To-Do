@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { MdAdd, MdCheck, MdDelete, MdEdit } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from "../config";
 
 const Form = () => {
     const [todos, setTodos] = useState([]);
@@ -21,7 +22,7 @@ const Form = () => {
         }
 
         try {
-            const res = await axios.post('http://localhost:5000/todos', { todo });
+            const res = await axios.post(`${BASE_URL}/todos`, { todo });
 
             if (res.data.insertedId) {
                 toast.success("Todo added successfully!");
@@ -36,7 +37,7 @@ const Form = () => {
     // Fetch all todos 
     const getTodos = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/todos');
+            const res = await axios.get(`${BASE_URL}/todos`);
             setTodos(res.data);
         } catch (error) {
             toast.error(error);
@@ -51,7 +52,7 @@ const Form = () => {
     const handleTodoDelete = async (_id) => {
         console.log("Delete this todo", _id);
         try {
-            const res = await axios.delete(`http://localhost:5000/todos/${_id}`);
+            const res = await axios.delete(`${BASE_URL}/todos/${_id}`);
             if (res.data.deletedCount > 0) {
                 toast.success("Deleted successfully!");
                 getTodos();
@@ -69,7 +70,7 @@ const Form = () => {
         }
 
         try {
-            const res = await axios.put(`http://localhost:5000/todosUpdate/${editingTodo._id}`, {
+            const res = await axios.put(`${BASE_URL}/todosUpdate/${editingTodo._id}`, {
                 todo: editedText
             });
             if (res.data.modifiedCount > 0) {
@@ -83,10 +84,11 @@ const Form = () => {
         }
     }
 
+
     // Handle Delete All
     const handleDeleteAll = async () => {
         try {
-            const res = await axios.delete('http://localhost:5000/todos');
+            const res = await axios.delete(`${BASE_URL}/todos`);
             if (res.data.deletedCount > 0) {
                 toast.success("All todos cleared successfully!");
                 setTodos([]);
