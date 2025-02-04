@@ -1,8 +1,29 @@
-# React + Vite
+# 📝 Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack Todo application built with modern web technologies to help you manage your daily tasks efficiently. Features real-time CRUD operations with persistent storage in MongoDB.
 
-Currently, two official plugins are available:
+![Todo App Demo](https://via.placeholder.com/800x400.png?text=Todo+App+Demo) 
+*Add your demo screenshot/gif here*
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
+
+- ✅ Add new todos with intuitive input
+- ✏️ Edit existing todos in-line
+- 🗑️ Delete todos with confirmation
+- 📋 View all todos in clean interface
+- 🗃️ MongoDB database persistence
+- 📱 Responsive design for all devices
+- 💫 Interactive UI with toast notifications
+
+## 🛠️ Tech Stack
+
+### **Frontend**
+![React]
+![Tailwind CSS]
+![React Icons]
+![Vite]
+
+### **Backend**
+![Node.js]
+![MongoDB]
+

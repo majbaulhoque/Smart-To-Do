@@ -83,6 +83,19 @@ const Form = () => {
         }
     }
 
+    // Handle Delete All
+    const handleDeleteAll = async () => {
+        try {
+            const res = await axios.delete('http://localhost:5000/todos');
+            if (res.data.deletedCount > 0) {
+                toast.success("All todos cleared successfully!");
+                setTodos([]);
+            }
+        } catch (error) {
+            toast.error("Failed to clear todos: " + error.message);
+        }
+    }
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-teal-400 via-blue-300 to-cyan-200">
             <div className="container mx-auto px-4 py-12">
@@ -129,7 +142,7 @@ const Form = () => {
                                             <input type="checkbox" className="w-4 h-4 accent-teal-500" />
                                             <span className="text-lg text-gray-800">{idx + 1}. {todo}</span>
                                         </div>
-                                        <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
+                                        <div className="flex gap-2 opacity-100"> {/* Removed group-hover classes */}
                                             <button
                                                 onClick={() => {
                                                     setEditingTodo(eachTodo)
@@ -157,8 +170,10 @@ const Form = () => {
                                 <span className="text-sm text-gray-500 font-medium">
                                     🎯 {todos.length} tasks remaining
                                 </span>
-                                <button className="text-sm bg-gradient-to-r from-red-400 to-pink-500 text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity font-medium shadow-md">
-                                    Clear Completed
+                                <button
+                                    onClick={handleDeleteAll}
+                                    className="text-sm bg-gradient-to-r from-red-400 to-pink-500 text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity font-medium shadow-md">
+                                    Clear All
                                 </button>
                             </div>
                         </div>
